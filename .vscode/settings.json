@@ -1,0 +1,11 @@
+{
+  "files.associations": {
+    "xstring": "cpp",
+    "xlocale": "cpp",
+    "cstdlib": "cpp",
+    "xiosbase": "cpp",
+    "xutility": "cpp",
+    "iostream": "cpp"
+  },
+  "C_Cpp.errorSquiggles": "disabled"
+}
