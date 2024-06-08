@@ -1,8 +1,7 @@
 #include <iostream>
-#include <cmath>
 using namespace std;
 
-int placeholderIndex[1][3] = {0};
+const int arrayLength = 3;
 
 bool isAboveTotalHeight(int initial, int target, int height, bool isCut){
   if(isCut && height > initial){
@@ -51,7 +50,6 @@ int getBaseHeight(int initial, int target, int surface, bool isCut){
 } 
 
 int computeSoilQualityNode(int initial, int target, int ceilingSurface, int baseSurface){
-
   const bool isCut = initial > target;
   int ceilingHeight = isCut ? initial : target;
   int baseHeight = isCut ?  target : initial;
@@ -100,7 +98,7 @@ void computeSoilQualityJob(int initialData[][3] , int targetData[][3], int ceili
 }
 
 int main(){
-  const int arrayLength = 3;
+  int placeholderIndex[1][3] = {0}; 
   int initial[1][arrayLength]  = {{30, 100, 50}};
   int target[1][arrayLength]  = {{100, 10, 35}};
   int surfaces1[1][arrayLength]  = {{50, 60, 40}};
