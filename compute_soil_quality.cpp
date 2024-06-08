@@ -1,7 +1,8 @@
 #include <iostream>
 using namespace std;
 
-const int arrayLength = 3;
+const int rowSize = 1;
+const int columnSize = 3;
 
 bool isAboveTotalHeight(int initial, int target, int height, bool isCut){
   if(isCut && height > initial){
@@ -82,12 +83,10 @@ int computeSoilQualityNode(int initial, int target, int ceilingSurface, int base
   return result;
 }
 
-void computeSoilQualityJob(int initialData[][3] , int targetData[][3], int ceilingSurfaceData[][3], int baseSurfaceData[][3]){
-   int rowSize = 1;
-   int columnSize = 3;
-
+void computeSoilQualityJob(int initialData[][columnSize] , int targetData[][columnSize], int ceilingSurfaceData[][columnSize], int baseSurfaceData[][columnSize]){
   for(int row = 0; row < rowSize; row++){
     for(int column = 0; column < columnSize; column++){
+
       const int initial = initialData[row][column];
       const int target = targetData[row][column];
       const int ceilingSurface = ceilingSurfaceData[row] != 0 ? ceilingSurfaceData[row][column] : 0;
@@ -98,11 +97,18 @@ void computeSoilQualityJob(int initialData[][3] , int targetData[][3], int ceili
 }
 
 int main(){
-  int placeholderIndex[1][3] = {0}; 
-  int initial[1][arrayLength]  = {{30, 100, 50}};
-  int target[1][arrayLength]  = {{100, 10, 35}};
-  int surfaces1[1][arrayLength]  = {{50, 60, 40}};
-  int surfaces2[1][arrayLength]  = {{40, 30, 30}};
+  int placeholderIndex[rowSize][columnSize] = {0}; 
+  /*
+  Notes:
+    - Index 0: Is a fill with surfaces in the initial and target bounds
+    - Index 1: Is a cut with both surfaces outside the initial and target bounds
+    - Index 2: Is a cut with the last surfaces outside the target bounds
+  */
+  int initial[rowSize][columnSize]  = {{30, 100, 50}};
+  int target[rowSize][columnSize]  = {{100, 10, 35}};
+  int surfaces1[rowSize][columnSize]  = {{50, 110, 40}};
+  int surfaces2[rowSize][columnSize]  = {{40, 5, 30}};
+  
   
   //Batch caller
   computeSoilQualityJob(initial, target, surfaces1, placeholderIndex);
